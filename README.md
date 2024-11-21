@@ -4,10 +4,9 @@
 Tech Stack:
   - Java 11, Gradle
   - Spring Boot -> Web, Security(JWT), Data JPA, Test, Validation
-  - Spring Cloud Gateway
   - OpenFeign (for exchange rates service from `https://www.cbar.az/currency/rates`
+  - PostgreSQL
   - Redis
-  - PostgreSQl
   - Liquibase
   - DockerFile
   - Project Lombok
