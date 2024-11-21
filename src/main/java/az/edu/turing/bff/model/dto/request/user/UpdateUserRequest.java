@@ -1,14 +1,11 @@
 package az.edu.turing.bff.model.dto.request.user;
 
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class UpdateUserRequest {
-    private String password;
+public record UpdateUserRequest(
+
+        @NotBlank
+        String password) {
 }

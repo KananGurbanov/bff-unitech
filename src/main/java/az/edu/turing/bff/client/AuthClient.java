@@ -1,12 +1,11 @@
 package az.edu.turing.bff.client;
 
 import az.edu.turing.bff.config.FeignConfig;
-import az.edu.turing.bff.model.dto.response.auth.JwtResponseDto;
-import az.edu.turing.bff.model.dto.request.auth.LoginRequestDto;
-import az.edu.turing.bff.model.dto.request.auth.RegisterRequestDto;
+import az.edu.turing.bff.model.dto.request.auth.LoginUserRequest;
+import az.edu.turing.bff.model.dto.request.auth.RegisterUserRequest;
 import az.edu.turing.bff.model.dto.response.RestResponse;
+import az.edu.turing.bff.model.dto.response.auth.JwtResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -15,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestHeader;
 public interface AuthClient {
 
     @PostMapping("/register")
-    Void register(@RequestBody RegisterRequestDto request);
+    Void register(@RequestBody RegisterUserRequest request);
 
     @PostMapping("/login")
-    RestResponse<JwtResponseDto> login(@RequestBody LoginRequestDto request);
+    RestResponse<JwtResponse> login(@RequestBody LoginUserRequest request);
 
     @PostMapping("/logout")
     String logout(@RequestHeader("Authorization") String token);
 
     @PostMapping("/refresh")
-    RestResponse<JwtResponseDto> refreshToken(@RequestHeader("Authorization") String refreshToken);
+    RestResponse<JwtResponse> refreshToken(@RequestHeader("Authorization") String refreshToken);
 }

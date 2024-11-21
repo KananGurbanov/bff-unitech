@@ -1,8 +1,8 @@
 package az.edu.turing.bff.controller;
 
-import az.edu.turing.bff.model.dto.response.auth.JwtResponseDto;
-import az.edu.turing.bff.model.dto.request.auth.LoginRequestDto;
-import az.edu.turing.bff.model.dto.request.auth.RegisterRequestDto;
+import az.edu.turing.bff.model.dto.request.auth.LoginUserRequest;
+import az.edu.turing.bff.model.dto.request.auth.RegisterUserRequest;
+import az.edu.turing.bff.model.dto.response.auth.JwtResponse;
 import az.edu.turing.bff.model.dto.response.RestResponse;
 import az.edu.turing.bff.service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -19,14 +19,14 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<Void> register(@RequestBody RegisterRequestDto registerRequest) {
+    public ResponseEntity<Void> register(@RequestBody RegisterUserRequest registerRequest) {
         authService.register(registerRequest);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/login")
-    public ResponseEntity<RestResponse<JwtResponseDto>> login(@RequestBody LoginRequestDto loginRequest) {
-        RestResponse<JwtResponseDto> jwtResponseDto = authService.login(loginRequest);
+    public ResponseEntity<RestResponse<JwtResponse>> login(@RequestBody LoginUserRequest loginRequest) {
+        RestResponse<JwtResponse> jwtResponseDto = authService.login(loginRequest);
         return ResponseEntity.ok(jwtResponseDto);
     }
 
@@ -37,8 +37,8 @@ public class AuthController {
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<RestResponse<JwtResponseDto>> refresh(@RequestHeader("Authorization") String refreshToken) {
-        RestResponse<JwtResponseDto> jwtResponseDtoRestResponse = authService.refresh(refreshToken);
+    public ResponseEntity<RestResponse<JwtResponse>> refresh(@RequestHeader("Authorization") String refreshToken) {
+        RestResponse<JwtResponse> jwtResponseDtoRestResponse = authService.refresh(refreshToken);
         return ResponseEntity.ok(jwtResponseDtoRestResponse);
     }
 }

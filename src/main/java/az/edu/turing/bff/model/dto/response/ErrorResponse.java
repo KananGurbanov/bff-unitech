@@ -1,16 +1,17 @@
 package az.edu.turing.bff.model.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
 
+import java.time.LocalDateTime;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.http.HttpStatus;
+@Builder
+public record ErrorResponse(
 
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-public class ErrorResponse {
-    private String errorCode;
-    private String message;
-    private HttpStatus status;}
+        Integer status,
+        String error,
+        String errorDetail,
+        String path,
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+        LocalDateTime timestamp) {
+}
