@@ -14,6 +14,7 @@ Tech Stack:
   - OpenApi (Swagger)
   - Slf4j
   - Render.com
+  - Railway.app
 
 
 ## Architecture ##
